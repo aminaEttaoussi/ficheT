@@ -124,7 +124,8 @@ const CategoryPage = () => {
                   className="flex-1 gap-2"
                   onClick={() => {
                     const subject = encodeURIComponent(`Fiche technique : ${selectedFiche.title}`);
-                    const body = encodeURIComponent(`Bonjour,\n\nVoici la fiche technique "${selectedFiche.title}".\n\nLien : ${window.location.origin}${selectedFiche.pdfUrl}`);
+                    const pdfLink = selectedFiche.pdfUrl.startsWith("http") ? selectedFiche.pdfUrl : `${window.location.origin}${selectedFiche.pdfUrl}`;
+                    const body = encodeURIComponent(`Bonjour,\n\nVoici la fiche technique "${selectedFiche.title}".\n\nLien : ${pdfLink}`);
                     window.open(`mailto:?subject=${subject}&body=${body}`);
                   }}
                 >
@@ -135,7 +136,8 @@ const CategoryPage = () => {
                   variant="outline"
                   className="flex-1 gap-2 text-[hsl(142,70%,35%)]"
                   onClick={() => {
-                    const text = encodeURIComponent(`Fiche technique : ${selectedFiche.title}\n${window.location.origin}${selectedFiche.pdfUrl}`);
+                    const pdfLink = selectedFiche.pdfUrl.startsWith("http") ? selectedFiche.pdfUrl : `${window.location.origin}${selectedFiche.pdfUrl}`;
+                    const text = encodeURIComponent(`Fiche technique : ${selectedFiche.title}\n${pdfLink}`);
                     window.open(`https://wa.me/?text=${text}`, "_blank");
                   }}
                 >
